@@ -6,10 +6,7 @@ public class Main
     public static void main(String[] args){
         UniversityRegister universityRegister = new UniversityRegister();
         
-        universityRegister.addStudents(
-                
-                
-
+        universityRegister.addStudents(                
                 new Student("John", "Doe", 20, Course.COMPUTER_SCIENCE, CourseType.UNDERGRADUATE, "12345",
                         Map.of(Module.CS101, 78, Module.CS102, 92, Module.CS103, 85)),
                 
@@ -126,42 +123,20 @@ public class Main
         );
         
         
-        System.out.println(universityRegister.exists("77892"));
-        System.out.println(universityRegister.exists("99004"));
-        System.out.println(universityRegister.exists("11226"));
-        System.out.println(universityRegister.exists("11227"));
-        universityRegister.removeStudentsByFirstName("Leo", "Ivy");
-        universityRegister.removeStudentsByID("11226");
-        //universityRegister.removeStudentsByLastName("Parker");
-        
-        System.out.println(universityRegister.exists("77892"));
-        System.out.println(universityRegister.exists("99004"));
-        System.out.println(universityRegister.exists("11226"));
-        System.out.println(universityRegister.exists("11227"));
         
         
-        // Example of how to filter shit
-        List<Student> studentsAgeAbove21 = 
-            universityRegister.filterStudents(
-                StudentFilters.isAgeGreaterThan(21)
-                );
-        System.out.println(studentsAgeAbove21);
-            
-        List<Student> studentsAbove19andInCS = 
-            universityRegister.filterStudents(
-                StudentFilters.isAgeGreaterThan(22), 
-                StudentFilters.hasCourse(Course.COMPUTER_SCIENCE)
-            );
-        System.out.println(studentsAbove19andInCS);
+        universityRegister.addStudents(
+        		new Student("Theo", "Cousin", 19, Course.COMPUTER_SCIENCE, CourseType.UNDERGRADUATE, "12345",
+        				Map.of(Module.CS101, 62, Module.CS102, 55, Module.CS103, 87)));
         
-        List<Student> studentYounger21andUndergradandFirstNamebeginswithL = 
-            universityRegister.filterStudents(
-                StudentFilters.isAgeLessThan(21), 
-                StudentFilters.hasCourseType(CourseType.UNDERGRADUATE), 
-                StudentFilters.firstNameStartsWith("L")
-            );
-        System.out.println(studentYounger21andUndergradandFirstNamebeginswithL);
         
-        System.out.println(universityRegister.averageMark("11227"));
+        
+        List<Student> studentMODTest = 
+        		universityRegister.filterStudents(
+        				StudentFilters.orderByMarkAscending(Module.HIST102),
+        				StudentFilters.hasModule(Module.HIST102)				
+        				);
+        
+        System.out.println(studentMODTest);
     }
 }

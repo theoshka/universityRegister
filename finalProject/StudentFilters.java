@@ -1,4 +1,5 @@
 
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 
@@ -43,6 +44,9 @@ public class StudentFilters // A class to contain all filters that could be need
     //////////////////////////////////////
 
     // Functions that return a predicate relating to the student.age() attribute
+    public static Predicate<Student> isAgeEqualTo(int age){ // cehsk to see if age is equal to
+    	return student -> student.age() == age;
+    }
     public static Predicate<Student> isAgeGreaterThan(int age) { // Checks if an age is greater than...
         return student -> student.age() > age;
     }
@@ -113,4 +117,20 @@ public class StudentFilters // A class to contain all filters that could be need
     }
     
     
+    
+    public static Comparator<Student> markComparator(Module module){ // takes a module as an argument and returns Comparator<Student> that compares students based on the marks of the specified module
+    	return Comparator.comparingInt(student -> student.moduleMarks().getOrDefault(module, 0)); // compares marksfor specified module
+    }
+    
+    public static Predicate<Student> orderByMarkAscending(Module module){
+    	Comparator<Student> comparator = markComparator(module);
+    	
+    	return student -> true; // predicate is used for sorting not filtering so they always return true
+    }
+    
+    public static Predicate<Student> orderByMarkDescending(Module module){
+    	Comparator<Student> comparator = markComparator(module).reversed(); 
+    	
+    	return student -> true;// predicate is used for sorting not filtering so they always return true
+    }
 }
