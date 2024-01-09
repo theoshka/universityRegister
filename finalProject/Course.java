@@ -1,4 +1,4 @@
-public enum Course {
+public enum Course {  // enum to store all the courses offered, and their corresponding modules
 	COMPUTER_SCIENCE(Module.CS101, Module.CS102, Module.CS103),
     ENGINEERING(Module.ENG101, Module.ENG102, Module.ENG103),
     BIOLOGY(Module.BIO101, Module.BIO102, Module.BIO103),
@@ -29,11 +29,11 @@ public enum Course {
 	
 	private final Module[] modules;
 
-    Course(Module... modules) {
+    Course(Module... modules) { // constructor for each course that takes an unknown number of modules to assign to each course
         this.modules = modules;
     }
 
-    public Module[] getModules() {
+    public Module[] getModules() {  // returns an array of modules specific to each course
         return modules;
     }
 }

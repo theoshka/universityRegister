@@ -1,6 +1,5 @@
 
-
-public enum Module{
+public enum Module{  
 	CS101, CS102, CS103,
     ENG101, ENG102, ENG103,
     BIO101, BIO102, BIO103,
